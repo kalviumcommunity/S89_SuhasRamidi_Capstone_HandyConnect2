@@ -111,5 +111,3 @@ Ensure the following are installed:
    ```bash
    npm start
    ```
-
-*Repeat similar steps for the frontend directory (if exists).*
