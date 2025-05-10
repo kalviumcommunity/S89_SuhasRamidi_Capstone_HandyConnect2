@@ -2,25 +2,22 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const bookingRoutes = require('./routes/bookingRoutes'); // Import the booking routes
+const bookingRoutes = require('./routes/bookingRoutes');
 
 const app = express();
-app.use(express.json()); // Needed to parse JSON request bodies
+app.use(express.json());
 
-app.use('/api', bookingRoutes); // Ensure this matches the route you want, like /api/bookings
+// Use booking routes
+app.use('/api', bookingRoutes);
 
-// Connect to MongoDB and start the server
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log('Connected to MongoDB');
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log('Connected to MongoDB');
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on http://localhost:${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error('MongoDB connection error:', err);
   });
-})
-.catch(err => {
-  console.error('MongoDB connection error:', err);
-});
