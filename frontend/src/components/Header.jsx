@@ -1,4 +1,3 @@
-// src/components/Header.jsx
 import React from 'react';
 
 const Header = () => {
@@ -6,7 +5,7 @@ const Header = () => {
     <header>
       <h1>Welcome to HandyConnect</h1>
       <nav>
-        <ul>
+        <ul className="nav-menu">
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/services">Services</a></li>
