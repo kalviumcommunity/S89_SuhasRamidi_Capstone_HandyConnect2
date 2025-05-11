@@ -1,5 +1,3 @@
-// controllers/bookingController.js
-
 const Booking = require('../models/Booking');
 
 // Create a new booking
@@ -30,9 +28,9 @@ const createBooking = async (req, res) => {
 // Get all bookings
 const getBookings = async (req, res) => {
   try {
-    const bookings = await Booking.find()
-      .populate('userId', 'name email') // Populate the user details
-      .populate('providerId', 'name serviceType'); // Populate the provider details
+    const bookings = await Booking.find() // No populate temporarily
+    // .populate('userId', 'name email') // Uncomment after fixing models
+    // .populate('providerId', 'name serviceType'); // Uncomment after creating Provider model
     res.status(200).json(bookings);
   } catch (error) {
     console.error('Error fetching bookings:', error);

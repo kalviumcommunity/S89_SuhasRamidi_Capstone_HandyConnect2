@@ -10,7 +10,7 @@ app.use(express.json());
 // Use booking routes
 app.use('/api', bookingRoutes);
 
-app.get("/", (req, res) => {
+app.get("/bookings", (req, res) => {
     res.send("HandyConnect backend is running!");
 });
 mongoose.connect(process.env.MONGO_URL)
