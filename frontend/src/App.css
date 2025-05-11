@@ -1,23 +1,34 @@
+/* Root container with center alignment and max width */
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem;
   text-align: center;
+  background-color: #ffffff; /* White background for a clean look */
+  border-radius: 10px; /* Rounded corners for elegance */
 }
 
+/* Logo styling with hover effects */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  transition: filter 300ms, transform 300ms; /* Added smooth transition for transform */
+  display: inline-block;
 }
 
+/* Hover effects with a subtle glow */
+.logo:hover {
+  filter: drop-shadow(0 0 2em #007bffaa); /* Blue glow */
+  transform: scale(1.1); /* Slightly enlarges the logo on hover */
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafb); /* React's signature glow */
+  transform: scale(1.1);
+}
+
+/* Logo rotation animation for React logo */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,10 +44,68 @@
   }
 }
 
+/* Card styling for a more modern look */
 .card {
   padding: 2em;
+  background-color: #ffffff; /* White background for contrast */
+  border-radius: 12px; /* Rounded corners for a sleek look */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-top: 3rem; /* Space from previous sections */
+  transition: box-shadow 300ms ease-in-out;
 }
 
+/* Hover effect for cards */
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Slightly darker shadow on hover */
+}
+
+/* Text styling for informational text */
 .read-the-docs {
-  color: #888;
+  color: #4f5b62; /* Slightly darker gray for better readability */
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+/* Button styles with blue and light green colors */
+button {
+  padding: 0.8rem 2rem;
+  background-color: #007bff; /* Blue for button */
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px; /* Rounded button */
+  cursor: pointer;
+  transition: background-color 300ms ease, transform 200ms ease;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue for hover */
+  transform: scale(1.05); /* Slightly enlarges on hover */
+}
+
+button:active {
+  background-color: #004085; /* Even darker blue on click */
+  transform: scale(1); /* Button returns to normal size after click */
+}
+
+/* Footer Styling with Elegant Green */
+footer {
+  color: #28a745; /* Elegant green for footer */
+  font-size: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* Header Styling with Elegant Blue */
+header {
+  color: #007bff; /* Blue color for header */
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+/* General background for the page */
+body {
+  background-color: #f0f8f1; /* Light elegant green for the page background */
+  color: #333; /* Dark text for readability */
+  font-family: 'Arial', sans-serif;
 }
