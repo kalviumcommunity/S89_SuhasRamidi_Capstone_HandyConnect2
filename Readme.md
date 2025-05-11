@@ -6,6 +6,7 @@ HandyConnect is a platform designed to seamlessly connect individuals seeking ho
 
 ## Key Features
 
+
 * **Service Provider Profiles:** Detailed profiles for service providers, including their skills, experience, ratings, reviews, and availability.
 * **Service Request Posting:** Users can easily post requests for specific services, outlining their needs, location, and preferred timeframe.
 * **Direct Connection:** Facilitates direct communication between users and providers for clear understanding of requirements and quotes.
@@ -111,3 +112,6 @@ Ensure the following are installed:
    ```bash
    npm start
    ```
+
+#### Deployed Backend Server
+Render Link : https://s89-suhasramidi-capstone-handyconnect2.onrender.com/ 
