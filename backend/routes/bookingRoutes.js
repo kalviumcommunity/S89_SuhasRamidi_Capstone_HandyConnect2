@@ -12,3 +12,8 @@ const router = express.Router();
  router.put('/bookings', updateBookingStatus);
 
 module.exports = router;
+
+
+
+
+
