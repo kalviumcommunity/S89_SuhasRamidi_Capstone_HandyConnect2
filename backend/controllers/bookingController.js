@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Booking = require( '../models/Booking' );
 
 // Create a new booking
@@ -71,4 +72,60 @@ const updateBookingStatus = async (req, res) => {
   }
 };
 
-module.exports = { createBooking, getBookings, updateBookingStatus };
+// Update a booking (full update, e.g., date, provider, status)
+const updateBooking = async (req, res) => {
+  try {
+    // Safely extract bookingId from body or params
+    const bookingId = (req.body && req.body.bookingId) || (req.params && req.params.bookingId);
+    const { userId, providerId, date, status } = req.body || {};
+    if (!bookingId) {
+      return res.status(400).json({ message: 'Booking ID is required' });
+    }
+    // Only update provided fields
+    const updateFields = {};
+    if (userId) updateFields.userId = userId;
+    if (providerId) updateFields.providerId = providerId;
+    if (date) updateFields.date = date;
+    if (status) {
+      const validStatuses = ['pending', 'confirmed', 'cancelled'];
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ message: 'Invalid status value' });
+      }
+      updateFields.status = status;
+    }
+    const updatedBooking = await Booking.findByIdAndUpdate(
+      bookingId,
+      updateFields,
+      { new: true }
+    );
+    if (!updatedBooking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+    res.status(200).json({ message: 'Booking updated', booking: updatedBooking });
+  } catch (error) {
+    console.error('Error updating booking:', error);
+    res.status(500).json({ message: 'Server error while updating booking' });
+  }
+};
+
+// Delete a booking
+const deleteBooking = async (req, res) => {
+  try {
+    const bookingId = req.params.bookingId;
+    if (!bookingId || !mongoose.Types.ObjectId.isValid(bookingId)) {
+      return res.status(400).json({ message: 'Valid Booking ID is required' });
+    }
+
+    const deletedBooking = await Booking.findByIdAndDelete(bookingId);
+    if (!deletedBooking) {
+      return res.status(404).json({ message: 'Booking not found' });
+    }
+
+    res.status(200).json({ message: 'Booking deleted', booking: deletedBooking });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error while deleting booking' });
+  }
+};
+
+module.exports = { createBooking, getBookings, updateBookingStatus, updateBooking, deleteBooking };
